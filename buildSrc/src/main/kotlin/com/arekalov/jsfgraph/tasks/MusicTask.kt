@@ -7,7 +7,12 @@ import javax.sound.sampled.Clip
 
 open class MusicTask : DefaultTask() {
 
-    fun playSound(fileName: String) {
+    @TaskAction
+    open fun execute() {
+        playSound("/Users/arekalov/Itmo/4/OPI/lab3/opi-lab3/buildSrc/src/main/resources/sound.wav")
+    }
+
+    private fun playSound(fileName: String) {
         try {
             val audioInputStream: AudioInputStream = AudioSystem.getAudioInputStream(File(fileName))
             val clip: Clip = AudioSystem.getClip()
@@ -21,11 +26,5 @@ open class MusicTask : DefaultTask() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-    }
-
-
-    @TaskAction
-    open fun execute() {
-        playSound("/Users/arekalov/Itmo/4/OPI/lab3/opi-lab3/buildSrc/src/main/resources/sound.wav")
     }
 }
